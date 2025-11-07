@@ -1,11 +1,16 @@
 {
-  "devDependencies": {
-    "vite": "^7.1.12"
-  },
   "name": "yuyy",
   "description": "webproject for ayuyy",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite", 
+    "build": "vite build" 
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "esbuild": "^0.25.11",
     "fdir": "^6.5.0",
@@ -17,10 +22,7 @@
     "source-map-js": "^1.2.1",
     "tinyglobby": "^0.2.15"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "devDependencies": {
+    "vite": "^7.1.12"
+  }
 }

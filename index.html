@@ -1,9 +1,549 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-  <title>My Site</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ayuyy's Profile</title>
+  <link rel="icon" href="./favicon.ico">
+  <!-- 外部资源 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  
+  <!-- Tailwind 配置 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#6C63FF',
+            secondary: '#A7A3FF',
+            accent: '#E6E5FF',
+            dark: '#2D2B55',
+            bilibili: '#FB7299',
+            qq: '#12B7F5'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .gradient-bg {
+        background: linear-gradient(135deg, #f5f7fa 0%, #eef1f5 100%);
+      }
+      .card-hover {
+        @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+      }
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+      @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+      }
+      .icon-with-text {
+        @apply flex flex-col items-center gap-1;
+      }
+      .carousel-container {
+        overflow: hidden;
+        position: relative;
+      }
+      .carousel-slide {
+        transition: transform 0.5s ease-in-out;
+        display: flex;
+      }
+      .carousel-item {
+        min-width: 100%;
+      }
+      .indicator-active {
+        background-color: rgba(255, 255, 255, 0.9);
+        transform: scale(1.2);
+      }
+      .pulse-highlight {
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(108, 99, 255, 0.4);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(108, 99, 255, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(108, 99, 255, 0);
+        }
+      }
+    }
+  </style>
 </head>
-<body>
-  <h1>Deployed successfully!</h1>
+
+<body class="gradient-bg min-h-screen font-sans text-gray-800 p-4 sm:p-6">
+  <!-- 装饰元素 - 响应式调整大小 -->
+  <div class="fixed -top-20 -right-20 w-64 h-64 sm:w-80 sm:h-80 bg-primary/10 rounded-full blur-3xl"></div>
+  <div class="fixed -bottom-32 -left-32 w-80 h-80 sm:w-96 sm:h-96 bg-secondary/10 rounded-full blur-3xl"></div>
+  
+  <!-- 页面容器 - 响应式最大宽度 -->
+  <div class="max-w-5xl mx-auto pt-6 sm:pt-10 pb-12 sm:pb-20 relative">    
+    <!-- 主卡片 - 响应式内边距 -->
+    <div class="bg-white rounded-3xl shadow-xl overflow-hidden transform transition-all duration-700 opacity-0 translate-y-10" id="main-card">
+      <!-- 内容区域 -->
+      <div class="p-4 sm:p-6 md:p-8">
+        <!-- 头像和基本信息区域 - 响应式布局 -->
+        <div class="flex flex-col md:flex-row items-center md:items-start gap-4 sm:gap-6 md:gap-8">
+          <!-- 头像区域 - 响应式大小 -->
+          <div class="relative">
+            <div class="w-32 sm:w-36 h-32 sm:h-36 rounded-full border-4 border-accent overflow-hidden z-10 relative animate-float">
+              <img src="assets/images/avatars/p1.jpg" 
+                   alt="Ayuyy" 
+                   class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+            </div>
+            <div class="absolute -bottom-2 -right-2 w-10 sm:w-12 h-10 sm:h-12 bg-primary rounded-full flex items-center justify-center text-white shadow-lg z-20 animate-pulse">
+              <i class="fa fa-paw"></i>
+            </div>
+            <div class="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-secondary blur-md opacity-30 -z-10"></div>
+          </div>
+          
+          <!-- 个人信息 - 响应式文本对齐和间距 -->
+          <div class="text-center md:text-left flex-1 w-full">
+            <div class="flex flex-col md:flex-row md:items-end gap-2 mb-2 flex-wrap justify-center md:justify-start">
+              <h1 class="text-[clamp(1.5rem,5vw,2.5rem)] font-bold text-dark">Ayuyy</h1>
+              <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium self-center md:self-auto pulse-highlight">Active</span>
+            </div>
+            <p class="text-gray-600 leading-relaxed mb-3 sm:mb-4">
+              这里是阿宇，喜欢furry，喜欢睡觉（？）<br>
+              崽子叫云松，谢谢喜欢
+            </p>
+            
+            <!-- 个人标签 - 响应式换行和间距 -->
+            <div class="flex flex-wrap gap-2 mb-4 sm:mb-6 justify-center md:justify-start">
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">#Furry爱好者</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">#嗜睡症患者</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">#二次元</span>
+              <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">#游戏玩家</span>
+            </div>
+            
+            <!-- 联系图标 - 响应式排列和大小 -->
+            <div class="flex flex-wrap justify-center md:justify-start gap-3 sm:gap-4 md:gap-6">
+              <!-- QQ图标 -->
+              <button class="contact-btn icon-with-text" 
+                      data-content="2944661085" 
+                      data-tooltip="已复制QQ号">
+                <div class="w-9 sm:w-10 h-9 sm:h-10 rounded-full bg-accent flex items-center justify-center text-qq hover:bg-qq hover:text-white transition-all duration-300">
+                  <svg width="18" sm:width="20" height="18" sm:height="20" viewBox="0 0 48 48" fill="currentColor">
+                    <circle cx="24" cy="14" r="8" />
+                    <path d="M12 38c0-6 4-10 10-10h4c6 0 10 4 10 10" />
+                    <circle cx="18" cy="22" r="2" />
+                    <circle cx="30" cy="22" r="2" />
+                  </svg>
+                </div>
+                <span class="text-xs text-gray-600">QQ</span>
+              </button>
+              
+              <!-- 邮箱图标 -->
+              <button class="contact-btn icon-with-text" 
+                      data-content="2944661085@qq.com" 
+                      data-tooltip="已复制邮箱">
+                <div class="w-9 sm:w-10 h-9 sm:h-10 rounded-full bg-accent flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                  <svg width="18" sm:width="20" height="18" sm:height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path d="M3 7l9 5 9-5" />
+                  </svg>
+                </div>
+                <span class="text-xs text-gray-600">邮箱</span>
+              </button>
+              
+              <!-- 电话图标 -->
+              <button class="contact-btn icon-with-text" 
+                      data-content="19071993182" 
+                      data-tooltip="已复制手机号">
+                <div class="w-9 sm:w-10 h-9 sm:h-10 rounded-full bg-accent flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                  <svg width="18" sm:width="20" height="18" sm:height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6 12h12M6 6h2v4M16 6h2v4M6 14h2v4M16 14h2v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="12" cy="12" r="2" />
+                  </svg>
+                </div>
+                <span class="text-xs text-gray-600">电话</span>
+              </button>
+              
+              <!-- 哔哩哔哩图标 -->
+              <a href="https://bilibili.com" class="icon-with-text" target="_blank" rel="noopener noreferrer">
+                <div class="w-9 sm:w-10 h-9 sm:h-10 rounded-full bg-accent flex items-center justify-center text-bilibili hover:bg-bilibili hover:text-white transition-all duration-300">
+                  <svg width="18" sm:width="20" height="18" sm:height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="4" y="4" width="16" height="16" rx="2" />
+                    <rect x="7" y="7" width="10" height="10" rx="1" />
+                    <circle cx="12" cy="20" r="1" />
+                  </svg>
+                </div>
+                <span class="text-xs text-gray-600">哔哩哔哩</span>
+              </a>
+              
+              <!-- 分享图标 -->
+              <button class="contact-btn icon-with-text" 
+                      data-content="分享个人资料" 
+                      data-tooltip="已分享">
+                <div class="w-9 sm:w-10 h-9 sm:h-10 rounded-full bg-accent flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                  <svg width="18" sm:width="20" height="18" sm:height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3 12l15-8 1.6 2.4-12 7.3 12 7.3-1.6 2.4-15-8z" />
+                  </svg>
+                </div>
+                <span class="text-xs text-gray-600">分享</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 个人简介 - 响应式内边距 -->
+        <div class="mb-6 sm:mb-8 bg-gray-50 rounded-2xl p-4 sm:p-6 mt-5 sm:mt-6">
+          <h3 class="text-lg font-semibold mb-3 flex items-center">
+            <i class="fa fa-user-circle text-primary mr-2"></i>个人简介
+          </h3>
+          <p class="text-gray-600 leading-relaxed">
+            泥嚎，我是阿宇，一个furry爱好者。喜欢玩游戏和睡觉。
+            设定叫云松，是一只冰原小狼。感谢喜欢！！
+          </p>
+        </div>
+        
+        <!-- 社交链接 - 响应式间距 -->
+        <div class="mb-6 sm:mb-8">
+          <h3 class="text-lg font-semibold mb-3 sm:mb-4 flex items-center">
+            <i class="fa fa-link text-primary mr-2"></i>社交平台
+          </h3>
+          <div class="space-y-2 sm:space-y-3">
+            <!-- 哔哩哔哩 -->
+            <a href="https://bilibili.com" class="social-link flex items-center p-3 sm:p-4 bg-accent/50 rounded-xl hover:bg-accent transition-all duration-300 opacity-0 translate-x-[-20px]" data-index="0" target="_blank" rel="noopener noreferrer">
+              <div class="w-9 sm:w-10 h-9 sm:h-10 rounded-lg bg-white flex items-center justify-center text-bilibili mr-3 sm:mr-4 shadow-sm">
+                <svg width="18" sm:width="20" height="18" sm:height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <rect x="4" y="4" width="16" height="16" rx="2" />
+                  <rect x="7" y="7" width="10" height="10" rx="1" />
+                  <circle cx="12" cy="20" r="1" />
+                </svg>
+              </div>
+              <div class="flex-grow">
+                <p class="font-medium">哔哩哔哩</p>
+                <p class="text-sm text-gray-500">@Ayuyy的小窝</p>
+              </div>
+              <i class="fa fa-arrow-right text-primary"></i>
+            </a>
+            
+            <!-- QQ空间 -->
+            <a href="https://qzone.qq.com" class="social-link flex items-center p-3 sm:p-4 bg-accent/50 rounded-xl hover:bg-accent transition-all duration-300 opacity-0 translate-x-[-20px]" data-index="1" target="_blank" rel="noopener noreferrer">
+              <div class="w-9 sm:w-10 h-9 sm:h-10 rounded-lg bg-white flex items-center justify-center text-qq mr-3 sm:mr-4 shadow-sm">
+                <i class="fa fa-star text-xl"></i>
+              </div>
+              <div class="flex-grow">
+                <p class="font-medium">QQ空间</p>
+                <p class="text-sm text-gray-500">Ayuyy的日常分享</p>
+              </div>
+              <i class="fa fa-arrow-right text-primary"></i>
+            </a>
+            
+            <!-- QQ群 -->
+            <a href="#" class="social-link flex items-center p-3 sm:p-4 bg-accent/50 rounded-xl hover:bg-accent transition-all duration-300 opacity-0 translate-x-[-20px]" data-index="2" id="qq-group-link">
+              <div class="w-9 sm:w-10 h-9 sm:h-10 rounded-lg bg-white flex items-center justify-center text-qq mr-3 sm:mr-4 shadow-sm">
+                <svg width="18" sm:width="20" height="18" sm:height="20" viewBox="0 0 48 48" fill="currentColor">
+                  <circle cx="24" cy="14" r="8" />
+                  <path d="M12 38c0-6 4-10 10-10h4c6 0 10 4 10 10" />
+                  <circle cx="18" cy="22" r="2" />
+                  <circle cx="30" cy="22" r="2" />
+                </svg>
+              </div>
+              <div class="flex-grow">
+                <p class="font-medium">QQ群</p>
+                <p class="text-sm text-gray-500">阿宇的粉丝交流群</p>
+              </div>
+              <i class="fa fa-arrow-right text-primary"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- 最近动态（图片轮播） - 响应式设计 -->
+        <div class="mb-3 sm:mb-4">
+          <h3 class="text-lg font-semibold mb-3 sm:mb-4 flex items-center">
+            <i class="fa fa-clock-o text-primary mr-2"></i>最近作品
+          </h3>
+          <div class="bg-gray-50 rounded-2xl p-4 sm:p-5">
+            <div class="flex gap-2 sm:gap-3 mb-3 sm:mb-4">
+              <!-- 动态头像 -->
+              <div class="mt-1">
+                <img src="assets/images/avatars/p1.jpg" alt="Ayuyy" class="w-7 sm:w-8 h-7 sm:h-8 rounded-full object-cover border-2 border-white shadow-sm">
+              </div>
+              <div class="flex-1">
+                <p class="text-gray-700">最新作品展示 <span class="text-primary font-medium">《云松的日常系列》</span></p>
+                <p class="text-gray-400 text-sm mt-1">点击图片可查看下一张作品</p>
+              </div>
+            </div>
+            
+            <!-- 图片轮播容器 - 响应式比例调整 -->
+            <div class="carousel-container w-full rounded-lg overflow-hidden shadow-md" style="padding-top: clamp(50%, 75%, 400px); height: 0;">
+              <div class="carousel-slide absolute inset-0 h-full">
+                <!-- 轮播图片会通过JS动态加载 -->
+              </div>
+              
+              <!-- 轮播控制按钮 - 响应式大小和位置 -->
+              <button class="absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 w-8 sm:w-10 h-8 sm:h-10 bg-black/30 hover:bg-black/50 text-white rounded-full flex items-center justify-center transition-all" id="prev-btn">
+                <i class="fa fa-chevron-left"></i>
+              </button>
+              <button class="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 w-8 sm:w-10 h-8 sm:h-10 bg-black/30 hover:bg-black/50 text-white rounded-full flex items-center justify-center transition-all" id="next-btn">
+                <i class="fa fa-chevron-right"></i>
+              </button>
+              
+              <!-- 轮播指示器 - 响应式大小 -->
+              <div class="absolute bottom-3 sm:bottom-4 left-0 right-0 flex justify-center gap-2" id="carousel-indicators">
+                <!-- 指示器会通过JS动态生成 -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- QQ群图片弹窗 - 响应式优化 -->
+  <div id="qq-modal" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center opacity-0 invisible transition-all duration-300">
+    <div class="relative max-w-md sm:max-w-2xl w-full mx-4">
+      <button id="close-modal" class="absolute -top-10 sm:-top-12 right-0 text-white text-xl sm:text-2xl hover:text-gray-300 transition-colors">
+        <i class="fa fa-times"></i>
+      </button>
+      <div class="bg-white rounded-xl overflow-hidden shadow-2xl">
+        <img src="assets/images/QQ.jpg" 
+             alt="QQ群二维码" 
+             class="w-full h-auto">
+        <div class="p-3 sm:p-4 text-center">
+          <p class="font-medium">阿宇的粉丝交流群</p>
+          <p class="text-sm text-gray-500 mt-1">扫码加入或搜索群号：965967736</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 页面加载完成后执行
+    document.addEventListener('DOMContentLoaded', function() {
+      // 主卡片动画显示
+      setTimeout(() => {
+        document.getElementById('main-card').classList.remove('opacity-0', 'translate-y-10');
+      }, 300);
+      
+      // 社交链接顺序动画
+      const socialLinks = document.querySelectorAll('.social-link');
+      socialLinks.forEach((link, index) => {
+        setTimeout(() => {
+          link.classList.remove('opacity-0', 'translate-x-[-20px]');
+        }, 600 + index * 200);
+      });
+      
+      // 轮播图片数据 - 修复路径错误
+      const carouselImages = [
+        'assets/images/works/back01.png',
+        'assets/images/works/back2.png',
+        'assets/images/works/back03.jpg',
+        'assets/images/works/lee1.jpg',
+        'assets/images/works/lee2.jpg',
+        'assets/images/works/lee3.jpg',  // 修复了此处的路径错误
+        'assets/images/works/lee4.jpg',
+        'assets/images/works/lee5.jpg',
+        'assets/images/works/lee6.jpg',
+        'assets/images/works/lee7.jpg',
+        'assets/images/works/lee8.jpg',
+        'assets/images/works/lee10.jpg',
+        'assets/images/works/lee11.png',
+        'assets/images/works/lee12.jpg',
+        'assets/images/works/lee13.jpg',
+        'assets/images/works/lee14.jpg',
+        'assets/images/works/lee15.jpg',
+        'assets/images/works/lee16.jpg',
+        'assets/images/works/p1.jpg',
+        'assets/images/works/QQ.jpg',
+        'assets/images/works/lee17.png',
+        'assets/images/works/lee18.png'
+      ];
+      
+      // 初始化轮播
+      initCarousel(carouselImages);
+      
+      // 初始化联系按钮复制功能
+      initContactButtons();
+      
+      // 初始化QQ群弹窗
+      initQQModal();
+      
+      // 监听窗口大小变化，调整布局
+      window.addEventListener('resize', adjustLayoutForScreenSize);
+      // 初始调整
+      adjustLayoutForScreenSize();
+    });
+    
+    // 根据屏幕尺寸调整布局
+    function adjustLayoutForScreenSize() {
+      const screenWidth = window.innerWidth;
+      const carouselContainer = document.querySelector('.carousel-container');
+      
+      // 根据屏幕宽度调整轮播容器比例
+      if (screenWidth < 640) {
+        carouselContainer.style.paddingTop = '100%'; // 手机上使用1:1比例
+      } else if (screenWidth < 768) {
+        carouselContainer.style.paddingTop = '80%';  // 平板竖屏使用4:5比例
+      } else {
+        carouselContainer.style.paddingTop = '75%';  // 桌面使用4:3比例
+      }
+    }
+    
+    // 轮播初始化函数 - 优化图片显示方式
+    function initCarousel(images) {
+      const carouselSlide = document.querySelector('.carousel-slide');
+      const indicatorsContainer = document.getElementById('carousel-indicators');
+      const prevBtn = document.getElementById('prev-btn');
+      const nextBtn = document.getElementById('next-btn');
+      let currentIndex = 0;
+      
+      // 清空现有内容
+      carouselSlide.innerHTML = '';
+      indicatorsContainer.innerHTML = '';
+      
+      // 创建轮播项和指示器
+      images.forEach((src, index) => {
+        // 创建轮播项 - 使用object-contain确保图片完整显示
+        const item = document.createElement('div');
+        item.className = 'carousel-item h-full flex items-center justify-center bg-gray-100';
+        
+        // 创建图片元素并添加错误处理
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = `作品 ${index + 1}`;
+        img.className = 'max-w-full max-h-full object-contain transition-opacity duration-300';
+        img.onerror = function() {
+          // 图片加载失败时显示占位图
+          this.src = 'https://picsum.photos/800/600?grayscale&blur=2';
+          this.alt = '图片加载失败';
+        };
+        
+        item.appendChild(img);
+        carouselSlide.appendChild(item);
+        
+        // 创建指示器
+        const indicator = document.createElement('button');
+        indicator.className = `w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-white/50 transition-all ${index === 0 ? 'indicator-active' : ''}`;
+        indicator.setAttribute('data-index', index);
+        indicator.addEventListener('click', () => goToSlide(index));
+        indicatorsContainer.appendChild(indicator);
+      });
+      
+      // 轮播切换函数
+      function goToSlide(index) {
+        currentIndex = index;
+        const slideWidth = -100 * currentIndex;
+        carouselSlide.style.transform = `translateX(${slideWidth}%)`;
+        
+        // 更新指示器状态
+        document.querySelectorAll('#carousel-indicators button').forEach((btn, i) => {
+          if (i === currentIndex) {
+            btn.classList.add('indicator-active');
+          } else {
+            btn.classList.remove('indicator-active');
+          }
+        });
+      }
+      
+      // 下一张
+      function nextSlide() {
+        currentIndex = (currentIndex + 1) % images.length;
+        goToSlide(currentIndex);
+      }
+      
+      // 上一张
+      function prevSlide() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        goToSlide(currentIndex);
+      }
+      
+      // 事件监听
+      nextBtn.addEventListener('click', nextSlide);
+      prevBtn.addEventListener('click', prevSlide);
+      carouselSlide.addEventListener('click', nextSlide);
+      
+      // 自动轮播
+      let carouselInterval = setInterval(nextSlide, 5000);
+      
+      // 鼠标悬停暂停轮播
+      const carouselContainer = document.querySelector('.carousel-container');
+      carouselContainer.addEventListener('mouseenter', () => {
+        clearInterval(carouselInterval);
+      });
+      
+      carouselContainer.addEventListener('mouseleave', () => {
+        carouselInterval = setInterval(nextSlide, 5000);
+      });
+    }
+    
+    // 联系按钮复制功能
+    function initContactButtons() {
+      const buttons = document.querySelectorAll('.contact-btn');
+      
+      buttons.forEach(button => {
+        button.addEventListener('click', async function() {
+          const content = this.getAttribute('data-content');
+          const tooltip = this.getAttribute('data-tooltip');
+          
+          try {
+            // 复制到剪贴板
+            await navigator.clipboard.writeText(content);
+            
+            // 显示提示
+            const originalText = this.querySelector('span').textContent;
+            this.querySelector('span').textContent = tooltip;
+            
+            // 恢复原文本
+            setTimeout(() => {
+              this.querySelector('span').textContent = originalText;
+            }, 2000);
+          } catch (err) {
+            console.error('复制失败:', err);
+            alert('复制失败，请手动复制');
+          }
+        });
+      });
+    }
+    
+    // QQ群弹窗控制
+    function initQQModal() {
+      const modal = document.getElementById('qq-modal');
+      const openBtn = document.getElementById('qq-group-link');
+      const closeBtn = document.getElementById('close-modal');
+      
+      // 打开弹窗
+      openBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        modal.classList.remove('opacity-0', 'invisible');
+        document.body.style.overflow = 'hidden'; // 禁止背景滚动
+      });
+      
+      // 关闭弹窗
+      function closeModal() {
+        modal.classList.add('opacity-0', 'invisible');
+        document.body.style.overflow = ''; // 恢复背景滚动
+      }
+      
+      closeBtn.addEventListener('click', closeModal);
+      
+      // 点击弹窗外部关闭
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+      
+      // ESC键关闭
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !modal.classList.contains('invisible')) {
+          closeModal();
+        }
+      });
+    }
+  </script>
 </body>
 </html>

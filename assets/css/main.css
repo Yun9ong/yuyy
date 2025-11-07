@@ -1,0 +1,95 @@
+/* 变量定义 - 统一管理颜色和过渡参数 */
+:root {
+    --primary-color: #6C63FF;
+    --primary-light: rgba(108, 99, 255, 0.15);
+    --primary-dark: rgba(108, 99, 255, 0.25);
+    --transition-base: all 0.3s ease;
+    --shadow-base: 0 10px 25px -5px rgba(108, 99, 255, 0.15), 0 8px 10px -6px rgba(108, 99, 255, 0.1);
+  }
+  
+  /* 自定义工具类 - 与Tailwind无冲突，增强复用性 */
+  @layer utilities {
+    .content-auto {
+      content-visibility: auto;
+    }
+  
+    .text-shadow {
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  
+    .card-hover {
+      transition: var(--transition-base);
+    }
+  
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-base);
+    }
+  
+    .gradient-bg {
+      background: linear-gradient(135deg, #f5f7ff 0%, #eef0ff 100%);
+    }
+  
+    .bg-blur {
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+  
+    .btn-bounce {
+      transition: transform 0.2s ease;
+    }
+  
+    .btn-bounce:active {
+      transform: scale(0.95);
+    }
+  
+    /* 新增动画工具类 */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+  
+    .scale-hover {
+      transition: transform 0.3s ease;
+    }
+  
+    .scale-hover:hover {
+      transform: scale(1.1);
+    }
+  
+    .scale-active {
+      transition: transform 0.2s ease;
+    }
+  
+    .scale-active:active {
+      transform: scale(0.9);
+    }
+  }
+  
+  /* 全局基础样式 - 避免直接覆盖Tailwind工具类 */
+  body {
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  
+  /* 复制提示框基础样式 - 结合JS动态控制 */
+  #tooltip {
+    pointer-events: none; /* 避免遮挡下方点击 */
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 4px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 9999;
+  }
+  
+  /* 社交链接动画基础样式 */
+  .social-link {
+    transition: var(--transition-base);
+  }

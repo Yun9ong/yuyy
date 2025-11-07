@@ -1,0 +1,72 @@
+/* 遵循Tailwind默认断点规范：sm(640px)、md(768px)、lg(1024px) */
+
+/* 移动设备适配 (≤640px) */
+@media (max-width: 640px) {
+    .social-link {
+      padding: 1.5rem 1rem; /* 调整内边距，避免内容拥挤 */
+    }
+  
+    .contact-btn {
+      width: 3.5rem; /* 增大按钮尺寸，确保图标完整显示 */
+      height: 3.5rem;
+    }
+  
+    .profile-title {
+      font-size: 1.875rem !important; /* 使用相对单位rem，适配不同屏幕 */
+    }
+  
+    .avatar-container {
+      width: 180px !important; /* 头像容器尺寸适配手机 */
+      height: 180px !important;
+    }
+  
+    /* 轮播适配 */
+    .carousel-container {
+      padding-top: 100% !important; /* 手机端使用1:1比例 */
+    }
+  }
+  
+  /* 平板设备适配 (768px~1024px) */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .card-wrapper {
+      max-width: 85% !important; /* 卡片宽度适配平板 */
+    }
+  
+    /* 轮播适配 */
+    .carousel-container {
+      padding-top: 60% !important; /* 平板端使用约16:9比例 */
+    }
+  }
+  
+  /* 深色模式适配 - 增强对比度，优化可读性 */
+  @media (prefers-color-scheme: dark) {
+    .gradient-bg {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    }
+  
+    .bg-white {
+      background-color: #252a41;
+    }
+  
+    .text-gray-800 {
+      color: #f0f0f0; /* 提亮文本，增强对比度 */
+    }
+  
+    .text-gray-600 {
+      color: #c0c0c0;
+    }
+  
+    .bg-accent\/50 {
+      background-color: var(--primary-light); /* 使用变量统一管理 */
+    }
+  
+    .bg-accent {
+      background-color: var(--primary-dark);
+    }
+  
+    /* 深色模式下提示框调整 */
+    #tooltip {
+      background: rgba(255, 255, 255, 0.15);
+      color: #f0f0f0;
+    }
+  }
